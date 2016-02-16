@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <!-- En-tête de la page -->
+		<?php include("../head.php"); ?>
+	</head>
+	
+	<header>
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="../index.php" class="brand">Raspberry Pi</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav">
+							<li><a href="../index.php">Accueil</a></li>
+							<li><a href="../tutoriels.php">Tutoriels</a></li>
+						</ul>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<body>
+		<div class="container">    
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="moncadre">
+						<h1>Installer et configurer Samba sur son Raspberry Pi</h1>
+						<p>
+							On installe samba :<br />
+							<code>apt-get install samba</code><br />
+							Et on sauvegarde le fichier de configuration de base :<br />
+							<code>cp /etc/samba/smb.conf /etc/samba/smb.conf.old</code><br /><br />
+							
+							Nous allons laisser Samba gérer les comptes utilisateurs. Pour faire cela facilement, on le laisse mapper ses utilisateurs avec ceux de Linux. Cela simplifie la gestion des droits mais impose que l'utilisateur Samba soit aussi un utilisateur du serveur.<br />
+							<code>nano /etc/samba/smb.conf</code><br /><br />
+							
+							On va d'abord travailler sur la partir [global].<br />
+							Dans la section Authentication, on décommente la ligne suivante (on enlève le #) :<br />
+							<q># security = user</q><br />
+							On chiffre les mots de passe : <br />
+							<q>encrypt passwords = true</q><br />
+							Et on ne synchronise pas le mot de passe Linux (serveur) et le mot de passe Samba, pour plus de sécurité :<br />
+							<q>unix password sync = no</q><br /><br />
+							
+							On crée notre utilisateur Linux avec la commande <span class="italic">adduser</span> ou <span class="italic">useradd</span> en fonction de nos besoins (les deux commandes n'ont pas exactement la même action. La deuxième est plus complète que l'autre (création du home par défaut etc...).<br />
+							Puis on assigne un mot de passe à notre utilisateur Samba :<br />
+							<code>smbpasswd -a &ltuser&gt</code><br />
+							Et on redémarre le serveur samba :<br />
+							<code>/etc/init.d/samba restart</code><br /><br />
+							
+							<q class="info">
+								Voici quelques explications de réglages :<br />
+								<ul>
+									<li><span class="bold underline">[Nom_Service] :</span>Nom du service apparaissant sous forme de répertoire (souvent appelé WORKGROUP).</li>
+									<li><span class="bold underline">comment = commentaires :</span> Permet de mettre un commentaire.</li>
+									<li><span class="bold underline">path = chemin :</span> Spécifie le chemin du répertoire.</li>
+									<li><span class="bold underline">browseable = yes/no :</span> Naviguer dans le dossier.</li>
+									<li><span class="bold underline">public = yes/no :</span> Accès sans authentification.</li>
+									<li><span class="bold underline">read only = yes/no :</span> Lecture seule.</li>
+									<li><span class="bold underline">writable = yes/no :</span> Droit d'écriture.</li>
+									<li><span class="bold underline">guest ok = no :</span> Empeche la connexion au serveur en tant qu'invité. Seul une authentification peut permettre de se connecter au serveur.<li>
+									<li><span class="bold underline">read list = user ou groupe (@) :</span> Liste les utilisateurs autorisés à lire.</li>
+									<li><span class="bold underline">write list = user ou groupe (@) :</span> Liste les utilisateurs autorisés à écrire.</li>
+									<li><span class="bold underline">force create mode = 0750 :</span> Impose les droits sur les documents créés.</li>
+								</ul>
+							</q><br />
+							Vous pouvez maintenant vous aussi créer vos propres règles. En voici un exemple :<br />
+							<q>
+								#Conf du partage des disques durs<br />
+								[media]<br />
+								comment = Stockage DDE<br />
+								path=/media<br />
+								browseable = yes<br />
+								public = no<br />
+								read only = yes<br />
+								writable = no <br />
+								guest ok = no<br />
+								write list = @stockage<br />
+								force create mode = 0750<br />
+								force directory mode = 0750
+							</q><br /><br />
+							
+							Et on redémarre samba :
+							<code>/etc/init.d/samba restart</code>
+							
+							
+							<a href="../tutoriels.php">Retour</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	
+	<footer>
+	<!-- Pied de la page -->
+		<?php include("../footer.php"); ?>
+	</footer>
+    
+</html>

@@ -1,0 +1,138 @@
+h1, h2, h3
+{
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.underline
+{
+	text-decoration: underline;
+}
+
+.bold
+{
+	font-weight: bold;
+}
+
+header, footer
+{
+	text-align: center;
+}
+
+*
+{
+	font-family: "Comic Sans MS", "Times New Roman", Arial, Verdana, serif, sans-serif;
+}
+
+p, li
+{
+	font-size: medium;
+}
+
+.tab4 
+{
+	margin-left: 4em;
+}
+
+.tab2
+{
+	margin-left: 2em;
+}
+
+.tab1
+{
+	margin-left: 1em;
+}
+
+body
+{
+	background-image: url("img/background/background.jpg");
+	background-attachment: fixed;
+}
+
+.moncadre
+{
+	width:80%;
+	margin:auto;
+	padding:10px;
+	background-color:#FFFFFF;
+	border-left:1px solid #000000; /* couleur du cadre */
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+	border-top:1px solid #000000;
+	border-radius: 10px;
+	-moz-border-radius: 10px; // Pour Firefox
+	-webkit-border-radius: 10px; // Pour Safari et Chrome
+}
+
+.info
+{
+	width:100%;
+	margin:auto;
+	padding:2px;
+	background-color:#00CCCC;
+	border-left:1px solid #000000; /* couleur du cadre */
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+	border-top:1px solid #000000;
+	border-radius: 10px;
+	-moz-border-radius: 10px; // Pour Firefox
+	-webkit-border-radius: 10px; // Pour Safari et Chrome
+}
+
+.important
+{
+	width:100%;
+	margin:auto;
+	padding:2px;
+	background-color:#FFCC00;
+	border-left:1px solid #000000; /* couleur du cadre */
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+	border-top:1px solid #000000;
+	color: red;
+	border-radius: 10px;
+	-moz-border-radius: 10px; // Pour Firefox
+	-webkit-border-radius: 10px; // Pour Safari et Chrome
+	display: block;
+	white-space: normal;
+}
+
+q
+{
+	display: block;
+	width:100%;
+	margin:auto;
+	padding:2px;
+	background-color:#99FF99;
+	border-left:1px solid #000000; /* couleur du cadre */
+	border-right:1px solid #000000;
+	border-bottom:1px solid #000000;
+	border-top:1px solid #000000;
+	border-radius: 10px;
+	-moz-border-radius: 10px; // Pour Firefox
+	-webkit-border-radius: 10px; // Pour Safari et Chrome
+	text-align: justify;
+}
+
+code
+{
+	display: block;
+	white-space: normal;
+}
+
+caption
+{
+	caption-side : top;
+}
+
+td
+{
+	border: 1px solid block;
+}
+
+table
+{
+	border-collapse: separate;
+	max-width: 100%;
+}
